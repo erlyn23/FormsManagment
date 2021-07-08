@@ -9,15 +9,17 @@
     <mat-grid-tile *ngFor="let form of forms">
         <mat-card class="forms-card">
             <mat-card-header>
-                <mat-card-title>
-                    <mat-icon>feed</mat-icon>&nbsp;{{form.title}}
+                <mat-card-title style="display: flex;justify-content: space-between;">
+                    <a mat-button (click)="goToQuestions(form)">
+                        <mat-icon>feed</mat-icon>&nbsp;{{form.title}}
+                    </a>
                     <button mat-button [matMenuTriggerFor]="menu">
                         <mat-icon>more_vert</mat-icon>
                     </button>
                 </mat-card-title>
             </mat-card-header>
             <mat-divider></mat-divider>
-            <mat-card-content>
+            <mat-card-content style="margin-top: 20px;">
                 <p>{{form.description}}</p>
             </mat-card-content>
         </mat-card>

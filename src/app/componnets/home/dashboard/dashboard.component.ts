@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { NavigationExtras, Router } from '@angular/router';
 import { AuthService } from '@services/auth.service';
 import { FormsService } from '@services/forms.service';
 import { AddDialogComponent } from '@shared/components/add-dialog/add-dialog.component';
@@ -16,15 +17,19 @@ import { Subscription } from 'rxjs';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss']
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent implements OnInit, OnDestroy {
 
   userId: number;
   forms: FormDto[] = [];
   subscriptions$: Subscription[] = [];
+
+  navigationExtras: NavigationExtras = { state: { form: null } };
+
   constructor(private formsService: FormsService, 
     private authService: AuthService,
     private matDialog: MatDialog,
-    private matSnack: MatSnackBar) { }
+    private matSnack: MatSnackBar,
+    private router: Router) { }
 
   ngOnInit(): void {
     const user: UserDecoded = jwtDecode(this.authService.userData.token);
@@ -135,6 +140,11 @@ export class DashboardComponent implements OnInit {
         }));
       }
     }));
+  }
+
+  goToQuestions(form: FormDto){
+    this.navigationExtras.state.form = form;
+    this.router.navigate(['/questions'], this.navigationExtras);
   }
 
   ngOnDestroy(): void {

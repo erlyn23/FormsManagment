@@ -1,0 +1,29 @@
+<h1 mat-dialog-title>
+    {{data.viewTitle}}
+</h1>
+<div mat-dialog-content>
+    <form [formGroup]="questionForm">
+        <mat-form-field style="width: 100%" color="accent">
+            <mat-label>Título</mat-label>
+            <input matInput type="text" formControlName="title">
+            <mat-error *ngIf="questionForm.get('title').invalid && (questionForm.get('title').dirty || questionForm.get('title').touched)">
+                <span *ngIf="questionForm.get('title').errors?.required">Escribe el título del cuestionario</span>
+            </mat-error>
+        </mat-form-field>
+        <mat-form-field style="width: 100%" color="accent">
+            <mat-label>Tipo de cuestionario</mat-label>
+            <mat-select formControlName="questionTypeId">
+                <mat-option *ngFor="let questionType of questionTypes" [value]="questionType.questionTypeId">
+                    {{questionType.questionType}}
+                </mat-option>
+            </mat-select>
+            <mat-error *ngIf="questionForm.get('questionTypeId').invalid && (questionForm.get('questionTypeId').dirty || questionForm.get('questionTypeId').touched)">
+                <span *ngIf="questionForm.get('questionTypeId').errors?.required">Selecciona un tipo de cuestionario</span>
+            </mat-error>
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions>
+    <button mat-raised-button color="accent" [mat-dialog-close]="questionForm.value" [disabled]="questionForm.invalid">{{data.viewTitle}}</button>
+    <button mat-button color="warn" (click)="onNoClick()">Cancelar</button>
+</div>

@@ -24,7 +24,7 @@ export class AddDialogComponent implements OnInit {
             description: ["", [Validators.required, Validators.maxLength(255)]]
         });
 
-        if(this.data !== undefined){
+        if(this.data.value !== null){
             
             this.formForm.controls.title.setValue(this.data.value.title);
             

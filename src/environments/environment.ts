@@ -6,7 +6,9 @@ export const environment = {
   production: false,
   endpoints: {
     account: "https://localhost:44329/Account",
-    forms: "https://localhost:44329/api/Form"
+    forms: "https://localhost:44329/api/Form",
+    questionTypes: "https://localhost:44329/api/QuestionType",
+    questions: "https://localhost:44329/api/Question"
   }
 };
 

@@ -5,11 +5,21 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class GenericService<T> {
+export abstract class GenericService<T> {
 
   url: string;
   httpHeaders: HttpHeaders;
   constructor(public http: HttpClient) { }
+  
+  setUrlExtension(extension: string){
+    this.url += `/${extension}`;
+  }
+
+  getFullUrl(){
+    return this.url;
+  }
+
+  public abstract resetUrl();
 
   get(): Observable<T>{
     return this.http.get<T>(this.url, {headers: this.httpHeaders});

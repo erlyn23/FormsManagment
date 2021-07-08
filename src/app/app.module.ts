@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './componnets/auth/login/login.component';
 import { RegisterComponent } from './componnets/auth/register/register.component';
-import { DashboardComponent } from './componnets/home/dashboard/dashboard.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { MaterialModule } from '@shared/material/material.module';
@@ -13,6 +12,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from '@shared/header/header.component';
 import { AddDialogComponent } from '@shared/components/add-dialog/add-dialog.component';
 import { ConfirmDialogComponent } from './shared/components/confirm-dialog/confirm-dialog.component';
+import { DashboardComponent } from './componnets/home/dashboard/dashboard.component';
+import { QuestionsComponent } from './componnets/home/questions/questions.component';
+import { QuestionFormDialogComponent } from '@shared/components/question-form-dialog/question-form-dialog.component';
+import { QuestionOptionsComponent } from './componnets/home/questions/question-options/question-options.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +25,10 @@ import { ConfirmDialogComponent } from './shared/components/confirm-dialog/confi
     DashboardComponent,
     HeaderComponent,
     AddDialogComponent,
-    ConfirmDialogComponent
+    ConfirmDialogComponent,
+    QuestionsComponent,
+    QuestionFormDialogComponent,
+    QuestionOptionsComponent
   ],
   imports: [
     BrowserModule,

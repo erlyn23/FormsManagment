@@ -15,14 +15,6 @@ export class FormsService extends GenericService<any> {
     super(http);
   }
 
-  setUrlExtension(extension: string){
-    this.url += `/${extension}`;
-  }
-
-  getFullUrl(){
-    return this.url;
-  }
-
   resetUrl(){
     this.url = environment.endpoints.forms;
   }
