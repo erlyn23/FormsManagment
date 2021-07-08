@@ -1,0 +1,34 @@
+<div id="content">
+    <h1 mat-dialog-title>{{data.title}}</h1>
+    <mat-divider></mat-divider>
+    <div mat-dialog-content style="margin-top: 10px;">
+        <form [formGroup]="formForm">
+            <mat-form-field color="accent" class="max-field">
+                <mat-label>Nombre</mat-label>
+                <input matInput formControlName="name" type="text">
+                <mat-error *ngIf="formForm.get('name').invalid && (formForm.get('name').dirty || formForm.get('name').touched)">
+                    <span *ngIf="formForm.get('name').errors?.required">Escribe el nombre del formulario</span>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field color="accent" class="max-field">
+                <mat-label>Título</mat-label>
+                <input matInput formControlName="title" type="text">
+                <mat-error *ngIf="formForm.get('title').invalid && (formForm.get('title').dirty || formForm.get('title').touched)">
+                    <span *ngIf="formForm.get('title').errors?.required">Escribe el título del formulario</span>
+                </mat-error>
+            </mat-form-field>
+            <mat-form-field color="accent" class="max-field">
+                <mat-label>Descripción</mat-label>
+                <textarea  formControlName="description" maxlength="255" style="resize: none;" matInput cols="20" rows="5"></textarea>
+                <mat-error *ngIf="formForm.get('description').invalid && (formForm.get('description').dirty || formForm.get('description').touched)">
+                    <span *ngIf="formForm.get('description').errors?.required">Escribe la descripción del formulario</span>
+                    <span *ngIf="formForm.get('description').errors?.maxlength">No puedes escribir más de 255 letras</span>
+                </mat-error>
+            </mat-form-field>
+        </form>
+    </div>
+    <div mat-dialog-actions>
+        <button mat-raised-button color="accent" [disabled]="formForm.invalid" [mat-dialog-close]="formForm.value">{{data.title}}</button>
+        <button mat-button color="warn" (click)="onNoClick()">Cancelar</button>
+    </div>
+</div>

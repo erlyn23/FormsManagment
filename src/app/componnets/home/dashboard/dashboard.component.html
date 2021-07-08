@@ -1,0 +1,29 @@
+<app-header [hasSesion]="true"></app-header>
+<div style="width: 100%; text-align: center;">
+    <h1>Mis formularios</h1>
+</div>
+<mat-grid-list cols="4" rowHeight="2:1">
+    <mat-grid-tile>
+        <button mat-raised-button class="add-btn" (click)="showAddFormDialog(null)"><mat-icon>add_circle_outline</mat-icon></button>
+    </mat-grid-tile>
+    <mat-grid-tile *ngFor="let form of forms">
+        <mat-card class="forms-card">
+            <mat-card-header>
+                <mat-card-title>
+                    <mat-icon>feed</mat-icon>&nbsp;{{form.title}}
+                    <button mat-button [matMenuTriggerFor]="menu">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                </mat-card-title>
+            </mat-card-header>
+            <mat-divider></mat-divider>
+            <mat-card-content>
+                <p>{{form.description}}</p>
+            </mat-card-content>
+        </mat-card>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="showAddFormDialog(form)"><mat-icon>edit</mat-icon> Editar</button>
+            <button mat-menu-item (click)="showConfirmDeleteDialog(form.formId)"><mat-icon>delete</mat-icon> Eliminar</button>
+        </mat-menu>
+    </mat-grid-tile>
+</mat-grid-list>

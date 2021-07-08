@@ -3,7 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  endpoints: {
+    account: "https://localhost:44329/Account",
+    forms: "https://localhost:44329/api/Form"
+  }
 };
 
 /*

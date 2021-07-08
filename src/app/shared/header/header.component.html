@@ -1,0 +1,37 @@
+<nav *ngIf="!hasSesion">
+    <mat-toolbar style="margin-bottom: 20px;">
+      <span>Form managment</span>
+      <div class="nav-links">
+        <ul class="nav-content">
+          <li>
+            <a [routerLink]="['/login']" mat-button>Iniciar sesión</a>
+          </li>
+          <li>
+            <a [routerLink]="['/register']" mat-raised-button color="accent">Registrarme</a>
+          </li>
+        </ul>
+      </div>
+    </mat-toolbar>
+</nav>
+
+<nav *ngIf="hasSesion">
+    <mat-toolbar style="margin-bottom: 20px;">
+      <span><a mat-button style="font-size: 25px;" [routerLink]="['/dashboard']">Form managment</a></span>
+      <div class="nav-system-links">
+        <ul class="nav-system-content">
+          <li>
+            <a mat-button>Inicio</a>
+          </li>
+          <div class="exit-button">
+            <li>
+                <span>Bienvenido, {{user.email}}</span>
+              </li>
+              &nbsp;&nbsp;&nbsp;&nbsp;
+              <li>
+                <a mat-raised-button (click)="logOut()" color="accent"><mat-icon>logout</mat-icon> Salir</a>
+              </li>
+          </div>
+        </ul>
+      </div>
+    </mat-toolbar>
+</nav>

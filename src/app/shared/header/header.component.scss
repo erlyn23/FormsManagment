@@ -1,0 +1,28 @@
+.nav-links{
+    width: 100%;
+    display: flex;
+    justify-content: flex-end;
+    .nav-content{
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+}
+
+.nav-system-links{
+    width: 100%;
+    
+    .nav-system-content{
+        list-style: none;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+    }
+    .exit-button{
+        display: flex;
+        flex-direction: row;
+        float: right;
+        margin-left: auto;
+    }
+}

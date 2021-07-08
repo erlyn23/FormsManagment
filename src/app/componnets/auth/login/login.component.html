@@ -1,0 +1,39 @@
+<app-header [hasSesion]="false"></app-header>
+<mat-grid-list cols="3" rowHeight="500px">
+    <mat-grid-tile>&nbsp;</mat-grid-tile>
+    <mat-grid-tile>
+        <mat-card>
+            <mat-card-header style="display: flex; justify-content: center;">
+                <mat-card-title>Iniciar sesión</mat-card-title>
+            </mat-card-header>
+            <mat-divider>
+            </mat-divider>
+            <mat-card-content>
+                <form [formGroup]="loginForm" style="margin-top: 10px;">
+                    <mat-form-field style="width: 100%;" color="accent">
+                        <mat-label><mat-icon>email</mat-icon> Correo electrónico</mat-label>
+                        <input matInput formControlName="email" type="text">
+                        <mat-error *ngIf="loginForm.get('email').invalid && (loginForm.get('email').dirty || loginForm.get('email').touched)">
+                            <span *ngIf="loginForm.get('email').errors?.required">Escribe tu correo</span>
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field style="width: 100%;" color="accent">
+                        <mat-label><mat-icon>vpn_key</mat-icon> Contraseña</mat-label>
+                        <input matInput type="password" formControlName="password">
+                        <mat-error *ngIf="loginForm.get('password').invalid && (loginForm.get('password').dirty || loginForm.get('password').touched)">
+                            <span *ngIf="loginForm.get('password').errors?.required">Escribe tu contraseña</span>
+                            <span *ngIf="loginForm.get('password').errors?.minlength">La contraseña no puede tener menos de 8 letras</span>
+                            <span *ngIf="loginForm.get('password').errors?.maxlength">La contraseña debe tener menos de 16 letras</span>
+                        </mat-error>
+                    </mat-form-field>
+                    <button mat-raised-button color="accent" (click)="login()" style="width: 100%"><mat-icon>login</mat-icon> Entrar</button>
+                </form>
+            </mat-card-content>
+            <mat-card-actions style="display: flex; justify-content: center;">
+                <mat-divider></mat-divider>
+                <span>¿No posees una cuenta? <a [routerLink]="['/register']" mat-button color="accent">Regístrate aquí</a></span>
+            </mat-card-actions>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>&nbsp;</mat-grid-tile>
+</mat-grid-list>
