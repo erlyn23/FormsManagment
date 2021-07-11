@@ -1,0 +1,15 @@
+.card-container{
+    width: 100%;
+    min-height: 1px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    .question-option-card{
+        width: 50%;
+
+        .max-width{
+            width: 100%;
+        }
+    }
+}

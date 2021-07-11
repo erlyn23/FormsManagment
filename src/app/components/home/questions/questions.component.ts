@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 import { QuestionsService } from '@services/questions.service';
 import { UtilityService } from '@services/utility.service';
 import { ConfirmDialogComponent } from '@shared/components/confirm-dialog/confirm-dialog.component';
@@ -21,6 +21,9 @@ export class QuestionsComponent implements OnInit, OnDestroy {
 
   questions: QuestionDto[] = [];
   subscriptions$: Subscription[] = [];
+
+  navigationExtras: NavigationExtras = { state: { question: null } }
+
   constructor(private questionService: QuestionsService,
     private dialog: MatDialog,
     private utilityService: UtilityService,
@@ -125,6 +128,11 @@ export class QuestionsComponent implements OnInit, OnDestroy {
         }
       })
     );
+  }
+
+  goToQuestionDetail(question: QuestionDto){
+    this.navigationExtras.state.question = question;
+    this.router.navigate(['/question-options'], this.navigationExtras);
   }
 
   ngOnDestroy():void{

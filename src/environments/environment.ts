@@ -8,7 +8,8 @@ export const environment = {
     account: "https://localhost:44329/Account",
     forms: "https://localhost:44329/api/Form",
     questionTypes: "https://localhost:44329/api/QuestionType",
-    questions: "https://localhost:44329/api/Question"
+    questions: "https://localhost:44329/api/Question",
+    questionOptions: "https://localhost:44329/api/QuestionOption"
   }
 };
 

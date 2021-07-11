@@ -16,6 +16,8 @@ import { DashboardComponent } from './components/home/dashboard/dashboard.compon
 import { QuestionsComponent } from './components/home/questions/questions.component';
 import { QuestionFormDialogComponent } from '@shared/components/question-form-dialog/question-form-dialog.component';
 import { QuestionOptionsComponent } from './components/home/questions/question-options/question-options.component';
+import { MatDatepicker, MatDatepickerModule } from '@angular/material/datepicker';
+import { MatNativeDateModule } from '@angular/material/core';
 
 @NgModule({
   declarations: [
@@ -37,9 +39,10 @@ import { QuestionOptionsComponent } from './components/home/questions/question-o
     ReactiveFormsModule,
     HttpClientModule,
     MaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatNativeDateModule
   ],
-  providers: [AddDialogComponent],
+  providers: [MatDatepickerModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

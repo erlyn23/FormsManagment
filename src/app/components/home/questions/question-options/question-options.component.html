@@ -1,1 +1,83 @@
-<p>question-options works!</p>
+<app-header [hasSesion]="true"></app-header>
+
+<div style="width: 100%; text-align: center;">
+    <h1>{{question?.title}}</h1>
+    <h3>{{question?.questionType}}</h3>
+</div>
+
+<div class="card-container">
+    <mat-card class="question-option-card" *ngIf="question?.questionTypeId === 1">
+        <mat-card-content>
+            <mat-form-field class="max-width">
+                <mat-label>{{question.title}}</mat-label>
+                <input type="text" matInput disabled>
+            </mat-form-field>
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="question-option-card" *ngIf="question?.questionTypeId === 2">
+        <mat-card-content>
+            <mat-form-field class="max-width">
+                <mat-label>{{question?.title}}</mat-label>
+                <textarea cols="30" rows="5" matInput disabled style="resize: none;"></textarea>
+            </mat-form-field>
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="question-option-card" *ngIf="question?.questionTypeId === 3">
+        <mat-card-content>
+            <mat-radio-group *ngFor="let questionOption of tempQuestionOptionsDto, let i = index">
+                <mat-radio-button disabled value="auto">
+                    <mat-form-field class="max-width" color="accent">
+                        <input type="text" matInput (change)="saveChanges($event, i)" [(ngModel)]="tempQuestionOptionsDto[i].title" name="questionOption-{{i}}" placeholder="Opción">
+                    </mat-form-field>
+                    <button mat-button color="accent" (click)="removeTempQuestionOption(i)"><mat-icon>close</mat-icon></button>
+                </mat-radio-button><br>
+            </mat-radio-group>
+            <button mat-button color="accent" (click)="addTempQuestionOption()">Añadir opción</button>
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="question-option-card" *ngIf="question?.questionTypeId === 4">
+        <mat-card-content>
+            <div *ngFor="let questionOption of tempQuestionOptionsDto, let i = index">
+                <mat-checkbox disabled>
+                    <mat-form-field class="max-width" color="accent">
+                        <input type="text" matInput (change)="saveChanges($event, i)" [(ngModel)]="tempQuestionOptionsDto[i].title" name="questionOption-{{i}}" placeholder="Opción">
+                    </mat-form-field>
+                    <button mat-button color="accent" (click)="removeTempQuestionOption(i)"><mat-icon>close</mat-icon></button>
+                </mat-checkbox><br>
+            </div>
+            <button mat-button color="accent" (click)="addTempQuestionOption()">Añadir opción</button>
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="question-option-card" *ngIf="question?.questionTypeId === 5">
+        <mat-card-content>
+            <div *ngFor="let questionOption of tempQuestionOptionsDto, let i = index">
+                <div>
+                    <span><mat-icon>expand_more</mat-icon></span>
+                    <mat-form-field style="width: 60%;" color="accent">
+                        <input type="text" matInput (change)="saveChanges($event, i)" [(ngModel)]="tempQuestionOptionsDto[i].title" name="questionOption-{{i}}" placeholder="Opción">
+                    </mat-form-field>
+                    <button mat-button color="accent" (click)="removeTempQuestionOption(i)"><mat-icon>close</mat-icon></button>
+                </div>
+            </div>
+            <button mat-button color="accent" (click)="addTempQuestionOption()">Añadir opción</button>
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="question-option-card" *ngIf="question?.questionTypeId === 6">
+        <mat-card-content>
+            <mat-form-field class="max-width">
+                <mat-label>Fecha</mat-label>
+                <input matInput [matDatepicker]="picker" disabled>
+                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+        </mat-card-content>
+    </mat-card>
+    <mat-card class="question-option-card" *ngIf="question?.questionTypeId === 7">
+        <mat-card-content>
+            <mat-form-field class="max-width">
+                <mat-label>Hora</mat-label>
+                <input type="time" matInput disabled>
+            </mat-form-field>
+        </mat-card-content>
+    </mat-card>
+</div>
