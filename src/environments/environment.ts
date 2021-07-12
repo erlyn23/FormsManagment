@@ -9,7 +9,9 @@ export const environment = {
     forms: "https://localhost:44329/api/Form",
     questionTypes: "https://localhost:44329/api/QuestionType",
     questions: "https://localhost:44329/api/Question",
-    questionOptions: "https://localhost:44329/api/QuestionOption"
+    questionOptions: "https://localhost:44329/api/QuestionOption",
+    answers: "https://localhost:44329/api/Answer",
+    userFormAnswer: "https://localhost:44329/api/UserFormAnswer"
   }
 };
 

@@ -14,6 +14,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatDatepickerModule } from '@angular/material/datepicker';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 @NgModule({
   declarations: [],
@@ -33,7 +34,8 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
     MatSelectModule,
     MatCheckboxModule,
     MatRadioModule,
-    MatDatepickerModule
+    MatDatepickerModule,
+    ClipboardModule
   ]
 })
 export class MaterialModule { }

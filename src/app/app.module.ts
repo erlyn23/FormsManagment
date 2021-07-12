@@ -18,6 +18,8 @@ import { QuestionFormDialogComponent } from '@shared/components/question-form-di
 import { QuestionOptionsComponent } from './components/home/questions/question-options/question-options.component';
 import { MatDatepicker, MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { ViewFormComponent } from '@components/home/view-form/view-form.component';
+import { ShareFormComponent } from './shared/components/share-form/share-form.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { MatNativeDateModule } from '@angular/material/core';
     ConfirmDialogComponent,
     QuestionsComponent,
     QuestionFormDialogComponent,
-    QuestionOptionsComponent
+    QuestionOptionsComponent,
+    ViewFormComponent,
+    ShareFormComponent
   ],
   imports: [
     BrowserModule,

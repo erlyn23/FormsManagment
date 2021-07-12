@@ -24,6 +24,7 @@
             </mat-card-content>
         </mat-card>
         <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="showShareFormDialog(form.formId)"><mat-icon>share</mat-icon> Compartir formulario</button>
             <button mat-menu-item (click)="showAddFormDialog(form)"><mat-icon>edit</mat-icon> Editar</button>
             <button mat-menu-item (click)="showConfirmDeleteDialog(form.formId)"><mat-icon>delete</mat-icon> Eliminar</button>
         </mat-menu>

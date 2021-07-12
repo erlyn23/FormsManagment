@@ -1,0 +1,13 @@
+<h1 mat-dialog-title>
+    Compartir formulario
+</h1>
+<div mat-dialog-content>
+    <mat-form-field style="width: 70%;">
+        <mat-label>Enlace del formulario</mat-label>
+        <input type="text" matInput color="accent" [(ngModel)]="formUrl" name="formUrl" disabled>
+    </mat-form-field>
+    <button color="accent" mat-button [cdkCopyToClipboard]="formUrl" (click)="onCopy()"><mat-icon>content_copy</mat-icon></button>
+</div>
+<div mat-dialog-actions>
+    <button mat-button color="accent" (click)="onNoClick()">Cerrar</button>
+</div>

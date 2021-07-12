@@ -6,6 +6,7 @@ import { AuthService } from '@services/auth.service';
 import { FormsService } from '@services/forms.service';
 import { AddDialogComponent } from '@shared/components/add-dialog/add-dialog.component';
 import { ConfirmDialogComponent } from '@shared/components/confirm-dialog/confirm-dialog.component';
+import { ShareFormComponent } from '@shared/components/share-form/share-form.component';
 import { FormDto } from '@shared/models/form-dto';
 import { ResponseDto } from '@shared/models/response-dto';
 import { UserDecoded } from '@shared/models/user-decoded';
@@ -140,6 +141,13 @@ export class DashboardComponent implements OnInit, OnDestroy {
         }));
       }
     }));
+  }
+
+  showShareFormDialog(formId: number): void{
+    const dialogRef = this.matDialog.open(ShareFormComponent,{
+      width: '450px',
+      data: { formUrl: `${window.location.protocol}//${window.location.hostname}:${window.location.port}/view-form?formId=${formId}` }
+    });
   }
 
   goToQuestions(form: FormDto){

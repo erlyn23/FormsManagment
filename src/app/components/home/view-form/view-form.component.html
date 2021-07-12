@@ -1,0 +1,121 @@
+<div class="general-container" *ngIf="hasSesion && !isFilled">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>{{form?.title}}</mat-card-title>
+            <mat-card-subtitle>{{form?.name}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+            <p style="text-align: justify;">{{form?.description}}</p>
+        </mat-card-content>
+    </mat-card>
+    <mat-card *ngFor="let question of questions, let i = index">
+        <mat-card-header>
+            <mat-card-title>{{question.title}}</mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <div *ngIf="question.questionTypeId === 1">
+            <mat-card-content>
+                <div *ngFor="let questionOption of question.questionOptions">
+                    <mat-form-field class="max-width" color="accent">
+                        <mat-label>{{questionOption.title}}</mat-label>
+                        <input type="text" matInput [(ngModel)]="answers[i].answer" name="answer-{{i}}">
+                    </mat-form-field>
+                </div>
+            </mat-card-content>
+        </div>
+        <div *ngIf="question.questionTypeId === 2">
+            <mat-card-content>
+                <div *ngFor="let questionOption of question.questionOptions">
+                    <mat-form-field class="max-width" color="accent">
+                        <mat-label>{{questionOption.title}}</mat-label>
+                        <textarea matInput cols="30" rows="5" style="resize: none;" [(ngModel)]="answers[i].answer" name="answer-{{i}}"></textarea>
+                    </mat-form-field>
+                </div>
+            </mat-card-content>
+        </div>
+        <div *ngIf="question.questionTypeId === 3">
+            <mat-card-content>
+                <div style="margin: 10px 0;" *ngFor="let questionOption of question.questionOptions">
+                    <mat-radio-group [(ngModel)]="answers[i].answer" name="answer-{{i}}">
+                        <mat-radio-button [value]="questionOption.title">
+                            {{questionOption.title}}
+                        </mat-radio-button>
+                    </mat-radio-group>
+                </div>
+            </mat-card-content>
+        </div>
+        <div *ngIf="question.questionTypeId === 4">
+            <mat-card-content>
+                <div style="margin: 10px 0;" *ngFor="let questionOption of checkboxAnswers, let checkboxIndex = index">
+                    <mat-checkbox [(ngModel)]="checkboxAnswers[checkboxIndex].answer" name="answer-{{checkboxIndex}}" [value]="questionOption.isSelected">
+                        {{questionOption.title}}
+                    </mat-checkbox><br>
+                </div>
+            </mat-card-content>
+        </div>
+        <div *ngIf="question.questionTypeId === 5">
+            <mat-card-content>
+                <mat-form-field class="max-width" color="accent">
+                    <mat-label>{{question.title}}</mat-label>
+                    <mat-select [(ngModel)]="answers[i].answer" name="answer-{{i}}">
+                        <mat-option *ngFor="let questionOption of question.questionOptions" [value]="questionOption.title">{{questionOption.title}}</mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </mat-card-content>
+        </div>
+        <div *ngIf="question.questionTypeId === 6">
+            <mat-card-content>
+                <mat-form-field class="max-width" color="accent" *ngFor="let questionOption of question.questionOptions">
+                    <mat-label>{{questionOption.title}}</mat-label>
+                    <input matInput [matDatepicker]="picker" [(ngModel)]="answers[i].answer" name="answer-{{i}}" readonly>
+                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                    <mat-datepicker #picker></mat-datepicker>
+                </mat-form-field>
+            </mat-card-content>
+        </div>
+        <div *ngIf="question.questionTypeId === 7">
+            <mat-card-content>
+                <mat-form-field class="max-width" color="accent" *ngFor="let questionOption of question.questionOptions">
+                    <input type="time" matInput [(ngModel)]="answers[i].answer" name="answer-{{i}}">
+                </mat-form-field>
+            </mat-card-content>
+        </div>
+    </mat-card>
+    <mat-card style="text-align: center;">
+        <button mat-raised-button (click)="sendAnswer()" color="accent" style="width: 60%; margin-bottom: 30px;">Enviar</button>
+    </mat-card>
+</div>
+
+<div class="general-container" *ngIf="!hasSesion">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Error de autenticación</mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+            <p style="text-align: justify;">Lo sentimos, pero para llenar este formulario, debes iniciar sesión</p>
+        </mat-card-content>
+        <mat-divider></mat-divider>
+        <mat-card-actions>
+            <button mat-button color="accent" [routerLink]="['/login']">Inicia sesión aquí</button>
+            <button mat-raised-button color="accent" [routerLink]="['/register']">Regístrate aquí</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
+
+<div class="general-container" *ngIf="isFilled">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>Formulario ya respondido</mat-card-title>
+        </mat-card-header>
+        <mat-divider></mat-divider>
+        <mat-card-content>
+            <p style="text-align: justify;">Lo sentimos, pero ya respondiste a este formulario</p>
+        </mat-card-content>
+        <mat-divider></mat-divider>
+        <mat-card-actions style="text-align: center;">
+            <button mat-button color="accent" [routerLink]="['/dashboard']">Volver al inicio</button>
+        </mat-card-actions>
+    </mat-card>
+</div>
